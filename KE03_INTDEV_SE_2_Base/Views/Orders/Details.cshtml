@@ -1,0 +1,97 @@
+﻿@using static DataAccessLayer.Models.Order
+@model DataAccessLayer.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h1>Order Details</h1>
+
+<div>
+    <h4>Order #@Model.Id</h4>
+    <h4>@Model.Status</h4>
+    <hr />
+    @if (Model.Status == OrderStatus.Received)
+    { 
+         <dt class="col-sm-2">Order date:</dt>
+         <dd class="col-sm-10">@Model.OrderDate</dd>
+    }else if (Model.Status == OrderStatus.Processing)
+    {
+        <dt class="col-sm-2">Order date:</dt>
+         <dd class="col-sm-10">@Model.OrderDate</dd>
+
+         <dt class="col-sm-2">Date started processing:</dt>
+         <dd class="col-sm-10">@Model.DateProcessing </dd>
+    } else{
+        <dt class="col-sm-2">Order Date:</dt>
+         <dd class="col-sm-10">@Model.OrderDate</dd>
+
+         <dt class="col-sm-2">Date started processing:</dt>
+         <dd class="col-sm-10">@Model.DateProcessing</dd>
+
+          <dt class="col-sm-2">Date shipped:</dt>
+         <dd class="col-sm-10">@Model.ShippedDate</dd>
+    }
+    
+
+
+    <div class="mb-4">
+        <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#customerInfo">
+            Show Customer Information
+        </button>
+        <div class="collapse mt-2" id="customerInfo">
+            <div class="card card-body">
+                <h5>Customer Details</h5>
+                <dl class="row">
+                    <dt class="col-sm-3">Name:</dt>
+                    <dd class="col-sm-9">@Model.Customer?.Name</dd>
+
+                    <dt class="col-sm-3">Address:</dt>
+                    <dd class="col-sm-9">@Model.Customer?.Address</dd>
+
+                    <dt class="col-sm-3">Email:</dt>
+                    <dd class="col-sm-9">@Model.Customer?.Email</dd>
+
+                    <dt class="col-sm-3">Phone number:</dt>
+                    <dd class="col-sm-9">@Model.Customer?.PhoneNumber</dd>
+                </dl>
+            </div>
+        </div>
+    </div
+
+    <div class="mb-4">
+        <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#productInfo">
+            Show Product Information
+        </button>
+        <div class="collapse mt-2" id="productInfo">
+            <div class="card card-body">
+                <h5>Products in Order</h5>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model.Products)
+                        {
+                            <tr>
+                                <td>@product.Name</td>
+                                <td>@product.Price.ToString("C")</td>
+                                <td>@product.Description</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="text-end fw-bold mt-3 mb-1">
+            Total: @Model.Products.Sum(p => p.Price).ToString("C")
+        </div>
+    </div>
+    <div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+</div>

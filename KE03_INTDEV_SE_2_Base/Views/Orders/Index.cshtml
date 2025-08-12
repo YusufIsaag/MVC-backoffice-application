@@ -1,0 +1,71 @@
+﻿@using static DataAccessLayer.Models.Order
+@model IEnumerable<DataAccessLayer.Models.Order>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+<h1>Orders</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Products</th>
+            <th>Total price</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@order.Customer?.Name</td>
+                <td>@order.OrderDate</td>
+                <td>
+                    @if (order.Products != null)
+                    {
+                        @string.Join(", ", order.Products.Select(p => p.Name))
+                    }
+                </td>
+                <td>
+                    @{
+                        var totalPrice = order.Products?.Sum(p => p.Price) ?? 0;
+                        @totalPrice.ToString("C")
+                    }
+                </td>
+                <td>@order.Status</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@order.Id">Details</a> |
+                    @if (order.Status == OrderStatus.Received)
+                    {
+                        <form asp-action="UpdateOrderStatus" asp-route-id="@order.Id" method="post" style="display:inline">
+                            <input type="hidden" name="newStatus" value="@OrderStatus.Processing" />
+                            <button type="submit" class="btn btn-warning btn-sm">Mark as Processing</button>
+                        </form>
+                    }
+                    else if (order.Status == OrderStatus.Processing)
+                    {
+                        <form asp-action="UpdateOrderStatus" asp-route-id="@order.Id" method="post" style="display:inline">
+                            <input type="hidden" name="newStatus" value="@OrderStatus.Shipped" />
+                            <button type="submit" class="btn btn-success btn-sm">Mark as Shipped</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">@order.Status</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

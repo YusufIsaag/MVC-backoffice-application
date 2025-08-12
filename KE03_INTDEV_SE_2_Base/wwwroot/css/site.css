@@ -1,0 +1,79 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+:root {
+    --gold: #D4AF37;
+    --dark-blue: #0D1B2A;
+}
+
+body {
+    font-family: Tahoma ,sans-serif;
+    background-color: #000;
+    color: white;
+}
+
+.navbar {
+    background-color: var(--dark-blue) !important;
+    border-bottom: 2px solid var(--gold) !important;
+}
+
+.navbar-brand {
+    color: var(--gold) !important;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+    .nav-link:hover {
+        color: var(--gold) !important;
+    }
+
+.container {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--gold);
+}
+
+footer {
+    background-color: var(--dark-blue) !important;
+    border-top: 2px solid var(--gold) !important;
+}
+
+.btn-primary {
+    background-color: var(--dark-blue);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+    .btn-primary:hover {
+        background-color: var(--gold);
+        color: var(--dark-blue);
+    }
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--gold);
+}
+
+a {
+    color: var(--gold);
+}
