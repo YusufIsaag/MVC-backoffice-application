@@ -1,10 +1,9 @@
-﻿using DataAccessLayer;
-using DataAccessLayer.Interfaces;
-using DataAccessLayer.Repositories;
-using Microsoft.AspNetCore.Http;
+﻿using KE03_INTDEV_SE_2_Base.Data;
+using KE03_INTDEV_SE_2_Base.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using static DataAccessLayer.Models.Order;
+using static KE03_INTDEV_SE_2_Base.Models.Order;
+
 
 namespace KE03_INTDEV_SE_2_Base.Controllers
 {

@@ -1,6 +1,7 @@
-using DataAccessLayer;
-using DataAccessLayer.Interfaces;
-using DataAccessLayer.Repositories;
+using System;
+using KE03_INTDEV_SE_2_Base.Data;
+using KE03_INTDEV_SE_2_Base.Models;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace KE03_INTDEV_SE_2_Base
@@ -21,7 +22,6 @@ namespace KE03_INTDEV_SE_2_Base
             builder.Services.AddControllersWithViews();
 
             // We registreren de repositories in de DI container
-            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -1,5 +1,5 @@
-﻿@using static DataAccessLayer.Models.Order
-@model IEnumerable<DataAccessLayer.Models.Order>
+﻿@using static KE03_INTDEV_SE_2_Base.Models.Order
+@model IEnumerable<KE03_INTDEV_SE_2_Base.Models.Order>
 
 @if (TempData["SuccessMessage"] != null)
 {
@@ -50,7 +50,7 @@
                     {
                         <form asp-action="UpdateOrderStatus" asp-route-id="@order.Id" method="post" style="display:inline">
                             <input type="hidden" name="newStatus" value="@OrderStatus.Processing" />
-                            <button type="submit" class="btn btn-warning btn-sm">Mark as Processing</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Mark as Processing</button>
                         </form>
                     }
                     else if (order.Status == OrderStatus.Processing)
