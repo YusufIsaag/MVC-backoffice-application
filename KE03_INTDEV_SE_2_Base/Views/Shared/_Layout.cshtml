@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/KE03_INTDEV_SE_2_Base.styles.css" asp-append-version="true" />
     @*Font*@
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -29,6 +28,30 @@
             </div>
         </nav>
     </header>
+    <div class="d-flex">
+        <div class="p-3" style="width: 220px; min-height: 100vh; background-color: var(--dark-blue);">
+            <ul class="m-3 nav flex-column">
+                <li class="nav-item mb-2">
+                    <a class="nav-link sidebar-link d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                        <img src="https://www.svgrepo.com/show/491873/home-selected-state.svg" alt="Home" style="width:35px; height:35px; margin-right:8px;">
+                          Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link sidebar-link d-flex align-items-center" asp-controller="Orders" asp-action="Index">
+                        <img src="https://www.svgrepo.com/show/283529/package-box.svg" alt="Products" style="width:24px; height:24px; margin-right:8px;">
+                        Orders
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="flex-grow-1">
+            <main role="main" class="m-3 pb-3 ">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
 
     <div class="container">
         <main role="main" class="pb-3">

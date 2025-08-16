@@ -10,7 +10,7 @@ namespace KE03_INTDEV_SE_2_Base.Controllers
     public class OrdersController : Controller
     {
         private readonly StarWarsDbContext _context;
-        private readonly EmailSender _emailSender;  // email sender toevoegen
+        private readonly EmailSender _emailSender;  
 
         public OrdersController(StarWarsDbContext context, EmailSender emailSender)
         {
